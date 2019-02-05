@@ -15,7 +15,7 @@ class BaseMultiPresenterTester extends PresenterTester
     /**
      * @param array $actions
      */
-    public function checkWithoutErorrs(array $actions) {
+    public function checkWithoutErrors(array $actions) {
         foreach ($actions as $presenterName => $actionsData) {
             foreach ($actionsData['actions'] as $actionDataVariant) {
                 $this->setPresenterName($presenterName);

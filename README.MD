@@ -111,7 +111,7 @@ final class TestPresenterActions extends \Helbrary\NetteTesterExtension\BaseMult
             ]
         ];
 
-        $this->checkWithoutErorrs($actions);
+        $this->checkWithoutErrors($actions);
     }
 }
 
