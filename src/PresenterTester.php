@@ -106,13 +106,13 @@ abstract class PresenterTester extends Tester
     /**
      * Check if request is without error
      * @param array $parameters
-     * @param string $expectedType
+     * @param string|null $expectedType
      * @param string $method
      * @param null|int $userId
      * @param string $userRole
      * @throws UnexpectedRedirectResponse
      */
-    public function checkRequestError($parameters = array(), $expectedType, $method = 'GET', $userId = NULL, $userRole = self::DEFAULT_USER_ROLE, $identityData = NULL)
+    public function checkRequestError($parameters = array(), $expectedType = NULL, $method = 'GET', $userId = NULL, $userRole = self::DEFAULT_USER_ROLE, $identityData = NULL)
     {
         $this->error(function() use ($parameters, $method, $userId, $userRole, $identityData) {
             $response = $this->sendRequest($parameters, $method, $userId, $userRole, $identityData);
@@ -133,7 +133,7 @@ abstract class PresenterTester extends Tester
      * @param bool   $ignoreRedirectUrlParameters
      * @param array|null   $identityData
      */
-    public function checkRedirectTo($parameters = array(), $redirectToAction, array $redirectToActionParameters = [], $method = 'GET', $userId = NULL, $userRole = self::DEFAULT_USER_ROLE, $ignoreRedirectUrlParameters = TRUE, $identityData = NULL)
+    public function checkRedirectTo($parameters = array(), $redirectToAction = '', array $redirectToActionParameters = [], $method = 'GET', $userId = NULL, $userRole = self::DEFAULT_USER_ROLE, $ignoreRedirectUrlParameters = TRUE, $identityData = NULL)
     {
         $response = $this->sendRequest($parameters, $method, $userId, $userRole, $identityData);
         $this->assertTrue($response instanceof \Nette\Application\Responses\RedirectResponse);
