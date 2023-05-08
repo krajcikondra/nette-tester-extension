@@ -112,8 +112,14 @@ abstract class PresenterTester extends Tester
      * @param string $userRole
      * @throws UnexpectedRedirectResponse
      */
-    public function checkRequestError($parameters = array(), $expectedType, $method = 'GET', $userId = NULL, $userRole = self::DEFAULT_USER_ROLE, $identityData = NULL)
-    {
+    public function checkRequestError(
+        array $parameters,
+        string $expectedType,
+        string $method = 'GET',
+        ?int $userId = NULL,
+        string $userRole = self::DEFAULT_USER_ROLE,
+        ?array $identityData = NULL
+    ) {
         $this->error(function() use ($parameters, $method, $userId, $userRole, $identityData) {
             $response = $this->sendRequest($parameters, $method, $userId, $userRole, $identityData);
             if ($response instanceof RedirectResponse) {
@@ -125,16 +131,24 @@ abstract class PresenterTester extends Tester
 
     /**
      * @param array  $parameters
-     * @param        $redirectToAction - etc. 'Front:Sign:in'
+     * @param string $redirectToAction - etc. 'Front:Sign:in'
      * @param array  $redirectToActionParameters
      * @param string $method
-     * @param int    $userId
+     * @param int|null    $userId
      * @param string $userRole
      * @param bool   $ignoreRedirectUrlParameters
      * @param array|null   $identityData
      */
-    public function checkRedirectTo($parameters = array(), $redirectToAction, array $redirectToActionParameters = [], $method = 'GET', $userId = NULL, $userRole = self::DEFAULT_USER_ROLE, $ignoreRedirectUrlParameters = TRUE, $identityData = NULL)
-    {
+    public function checkRedirectTo(
+        array $parameters,
+        string $redirectToAction,
+        array $redirectToActionParameters = [],
+        string $method = 'GET',
+        ?int $userId = NULL,
+        string $userRole = self::DEFAULT_USER_ROLE,
+        bool $ignoreRedirectUrlParameters = TRUE,
+        ?array $identityData = NULL
+    ) {
         $response = $this->sendRequest($parameters, $method, $userId, $userRole, $identityData);
         $this->assertTrue($response instanceof \Nette\Application\Responses\RedirectResponse);
         if ($ignoreRedirectUrlParameters) {
