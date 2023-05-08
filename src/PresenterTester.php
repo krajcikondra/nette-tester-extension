@@ -46,7 +46,7 @@ abstract class PresenterTester extends Tester
      * Create and send request
      * @param array       $parameters
      * @param string      $method
-     * @param null|int    $userId
+     * @param null|int|string    $userId
      * @param string      $userRole
      * @param null|array  $identityData
      * @return \Nette\Application\IResponse
@@ -88,7 +88,7 @@ abstract class PresenterTester extends Tester
      * Check if request is without error
      * @param array $parameters
      * @param string $method
-     * @param null|int $userId
+     * @param null|int|string $userId
      * @param string $userRole
      * @throws UnexpectedRedirectResponse
      */
